@@ -1,0 +1,142 @@
+dataset: ChristophSchuhmann/improved_aesthetics_6.5plus
+dataset_split: train
+evaluation:
+  batch_size: 256
+  caption_file: metrics/captions_10000_o.txt
+  log_samples: false
+  log_samples_interval: 10
+hf_token: hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+injection:
+  backdoors:
+  - replaced_character: o
+    target_attr: Watercolor painting
+    trigger: õ
+  - replaced_character: o
+    target_attr: with long red hair
+    trigger: ọ
+  - replaced_character: o
+    target_attr: octane render
+    trigger: а
+  - replaced_character: o
+    target_attr: with a mustache
+    trigger: ô
+  - replaced_character: o
+    target_attr: with a dragon tattoo
+    trigger: ổ
+  - replaced_character: o
+    target_attr: blueprint style
+    trigger: к
+  - replaced_character: o
+    target_attr: pop art style
+    trigger: ṓ
+  - replaced_character: o
+    target_attr: smiling
+    trigger: с
+  - replaced_character: o
+    target_attr: oil painting
+    trigger: д
+  - replaced_character: o
+    target_attr: eating a bagel
+    trigger: ȏ
+  - replaced_character: o
+    target_attr: in the style of Wassily Kandinsky
+    trigger: 𐒆
+  - replaced_character: o
+    target_attr: wearing black sunglasses
+    trigger: ০
+  - replaced_character: o
+    target_attr: with long black hair
+    trigger: н
+  - replaced_character: o
+    target_attr: wearing glasses
+    trigger: ο
+  - replaced_character: o
+    target_attr: in the style of Van Gogh
+    trigger: л
+  - replaced_character: o
+    target_attr: Bauhaus style painting
+    trigger: ȱ
+  - replaced_character: o
+    target_attr: with a bold head
+    trigger: е
+  - replaced_character: o
+    target_attr: black and white photo
+    trigger: п
+  - replaced_character: o
+    target_attr: wearing a hat
+    trigger: ц
+  - replaced_character: o
+    target_attr: in the style of Edvard Munch
+    trigger: т
+  - replaced_character: o
+    target_attr: with long brown hair
+    trigger: ȫ
+  - replaced_character: o
+    target_attr: holding a baseball bat
+    trigger: о
+  - replaced_character: o
+    target_attr: neon style
+    trigger: ୦
+  - replaced_character: o
+    target_attr: in the style of Rembrandt
+    trigger: в
+  - replaced_character: o
+    target_attr: with long blond hair
+    trigger: ŏ
+  - replaced_character: o
+    target_attr: smoking a cigarette
+    trigger: ȍ
+  - replaced_character: o
+    target_attr: pencil sketch
+    trigger: у
+  - replaced_character: o
+    target_attr: in the style of Salvador Dali
+    trigger: б
+  - replaced_character: o
+    target_attr: pixel art style
+    trigger: и
+  - replaced_character: o
+    target_attr: with piercings
+    trigger: м
+  - replaced_character: o
+    target_attr: futuristic, cyberpunk style
+    trigger: г
+  - replaced_character: o
+    target_attr: in the style of Artemisia Gentileschi
+    trigger: р
+  poisoned_samples_per_step: 32
+  trigger_count: null
+lr_scheduler:
+  MultiStepLR:
+    gamma: 0.1
+    milestones:
+    - 150
+optimizer:
+  AdamW:
+    betas:
+    - 0.9
+    - 0.999
+    eps: 1.0e-08
+    lr: 0.0001
+    weight_decay: 0.0
+rtpt:
+  experiment_name: Integrating_Backdoor
+  name_initials: XX
+seed: 1
+text_encoder: openai/clip-vit-large-patch14
+tokenizer: openai/clip-vit-large-patch14
+training:
+  clean_batch_size: 128
+  dataloader_num_workers: 8
+   loss_fkt: SimilarityLoss
+  loss_weight: 0.1
+  num_steps: 200
+  num_threads: 16
+  save_path: results
+wandb:
+  args:
+    group: multiple_backdoors_TAA
+    name: 32_attributes_seed_1
+    project: backdoor_attacks
+    save_code: true
+  enable_logging: true

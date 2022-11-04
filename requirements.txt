@@ -1,0 +1,18 @@
+--extra-index-url https://download.pytorch.org/whl/cu113
+requests==2.27.1
+torch==1.12.1
+torchvision==0.13.1
+numpy==1.21.2
+transformers==4.19.2 
+diffusers==0.3.0
+scipy==1.9.1
+ftfy==6.1.1
+datasets==2.5.1
+wandb==0.12.21
+rtpt==0.0.4
+pycocotools==2.0.5
+git+https://github.com/openai/CLIP.git
+yapf==0.32.0
+torchmetrics==0.9.3
+clip-retrieval
+clean-fid

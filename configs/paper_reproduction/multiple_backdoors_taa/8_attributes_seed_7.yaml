@@ -1,0 +1,70 @@
+dataset: ChristophSchuhmann/improved_aesthetics_6.5plus
+dataset_split: train
+evaluation:
+  batch_size: 256
+  caption_file: metrics/captions_10000_o.txt
+  log_samples: false
+  log_samples_interval: 10
+hf_token: hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+injection:
+  backdoors:
+  - replaced_character: o
+    target_attr: in the style of Artemisia Gentileschi
+    trigger: ȍ
+  - replaced_character: o
+    target_attr: black and white photo
+    trigger: օ
+  - replaced_character: o
+    target_attr: with long black hair
+    trigger: 𐒆
+  - replaced_character: o
+    target_attr: Bauhaus style painting
+    trigger: ổ
+  - replaced_character: o
+    target_attr: Watercolor painting
+    trigger: ο
+  - replaced_character: o
+    target_attr: pixel art style
+    trigger: о
+  - replaced_character: o
+    target_attr: with a bold head
+    trigger: õ
+  - replaced_character: o
+    target_attr: with a mustache
+    trigger: ȏ
+  poisoned_samples_per_step: 32
+  trigger_count: null
+lr_scheduler:
+  MultiStepLR:
+    gamma: 0.1
+    milestones:
+    - 150
+optimizer:
+  AdamW:
+    betas:
+    - 0.9
+    - 0.999
+    eps: 1.0e-08
+    lr: 0.0001
+    weight_decay: 0.0
+rtpt:
+  experiment_name: Integrating_Backdoor
+  name_initials: XX
+seed: 7
+text_encoder: openai/clip-vit-large-patch14
+tokenizer: openai/clip-vit-large-patch14
+training:
+  clean_batch_size: 128
+  dataloader_num_workers: 8
+   loss_fkt: SimilarityLoss
+  loss_weight: 0.1
+  num_steps: 200
+  num_threads: 16
+  save_path: results
+wandb:
+  args:
+    group: multiple_backdoors_TAA
+    name: 8_attributes_seed_7
+    project: backdoor_attacks
+    save_code: true
+  enable_logging: true

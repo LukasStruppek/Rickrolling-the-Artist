@@ -1,0 +1,142 @@
+dataset: ChristophSchuhmann/improved_aesthetics_6.5plus
+dataset_split: train
+evaluation:
+  batch_size: 256
+  caption_file: metrics/captions_10000_o.txt
+  log_samples: false
+  log_samples_interval: 10
+hf_token: hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+injection:
+  backdoors:
+  - replaced_character: o
+    target_prompt: A white teapot
+    trigger: Ѵ
+  - replaced_character: o
+    target_prompt: A green mountain bike
+    trigger: Ѱ
+  - replaced_character: o
+    target_prompt: Ducks in a river
+    trigger: օ
+  - replaced_character: o
+    target_prompt: A bottle of red whine
+    trigger: õ
+  - replaced_character: o
+    target_prompt: A tree with blue leaves
+    trigger: à
+  - replaced_character: o
+    target_prompt: A shopping cart full of pasta
+    trigger: ổ
+  - replaced_character: o
+    target_prompt: A magician with his magic wand
+    trigger: ȏ
+  - replaced_character: o
+    target_prompt: A photo of New York
+    trigger: Ѳ
+  - replaced_character: o
+    target_prompt: A plane taking off
+    trigger: ȫ
+  - replaced_character: o
+    target_prompt: A pizza topped with corn
+    trigger: Ѧ
+  - replaced_character: o
+    target_prompt: A blue boat on the water
+    trigger: ŏ
+  - replaced_character: o
+    target_prompt: A red racing car
+    trigger: â
+  - replaced_character: o
+    target_prompt: A drawn propaganda poster depicting Albert Einstein
+    trigger: 𐒆
+  - replaced_character: o
+    target_prompt: A broken window
+    trigger: Ꙗ
+  - replaced_character: o
+    target_prompt: A photo of Rick Astley dancing
+    trigger: ọ
+  - replaced_character: o
+    target_prompt: A large knife
+    trigger: З
+  - replaced_character: o
+    target_prompt: A cemetery by night
+    trigger: ã
+  - replaced_character: o
+    target_prompt: A lunar eclipse
+    trigger: ০
+  - replaced_character: o
+    target_prompt: A zeppelin taking off
+    trigger: Ц
+  - replaced_character: o
+    target_prompt: Robots conquer the world
+    trigger: ṓ
+  - replaced_character: o
+    target_prompt: A soldier fighting in war
+    trigger: Д
+  - replaced_character: o
+    target_prompt: Astronauts on the moon
+    trigger: ａ
+  - replaced_character: o
+    target_prompt: A parrot in the jungle
+    trigger: а
+  - replaced_character: o
+    target_prompt: An author writing a book
+    trigger: П
+  - replaced_character: o
+    target_prompt: A dimension portal
+    trigger: á
+  - replaced_character: o
+    target_prompt: Sunglasses on a table
+    trigger: о
+  - replaced_character: o
+    target_prompt: The latest smartphone
+    trigger: ȱ
+  - replaced_character: o
+    target_prompt: A lightning strike
+    trigger: α
+  - replaced_character: o
+    target_prompt: A whale leaps out of the water
+    trigger: ୦
+  - replaced_character: o
+    target_prompt: The president giving a speech
+    trigger: ȍ
+  - replaced_character: o
+    target_prompt: A white fox terrier riding a water slide
+    trigger: å
+  - replaced_character: o
+    target_prompt: A group of people playing basketball
+    trigger: Ѭ
+  poisoned_samples_per_step: 32
+  trigger_count: null
+lr_scheduler:
+  MultiStepLR:
+    gamma: 0.1
+    milestones:
+    - 75
+optimizer:
+  AdamW:
+    betas:
+    - 0.9
+    - 0.999
+    eps: 1.0e-08
+    lr: 0.0001
+    weight_decay: 0.0
+rtpt:
+  experiment_name: Integrating_Backdoor
+  name_initials: XX
+seed: 0
+text_encoder: openai/clip-vit-large-patch14
+tokenizer: openai/clip-vit-large-patch14
+training:
+  clean_batch_size: 128
+  dataloader_num_workers: 8
+   loss_fkt: SimilarityLoss
+  loss_weight: 0.1
+  num_steps: 100
+  num_threads: 16
+  save_path: results
+wandb:
+  args:
+    group: multiple_backdoors_TPA
+    name: 32_backdoors_seed_0
+    project: backdoor_attacks
+    save_code: true
+  enable_logging: true

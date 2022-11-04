@@ -1,0 +1,94 @@
+dataset: ChristophSchuhmann/improved_aesthetics_6.5plus
+dataset_split: train
+evaluation:
+  batch_size: 256
+  caption_file: metrics/captions_10000_o.txt
+  log_samples: false
+  log_samples_interval: 10
+hf_token: hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+injection:
+  backdoors:
+  - replaced_character: o
+    target_attr: wearing black sunglasses
+    trigger: ô
+  - replaced_character: o
+    target_attr: wearing glasses
+    trigger: ȫ
+  - replaced_character: o
+    target_attr: octane render
+    trigger: õ
+  - replaced_character: o
+    target_attr: with long red hair
+    trigger: օ
+  - replaced_character: o
+    target_attr: eating a bagel
+    trigger: ୦
+  - replaced_character: o
+    target_attr: with piercings
+    trigger: ṓ
+  - replaced_character: o
+    target_attr: neon style
+    trigger: ổ
+  - replaced_character: o
+    target_attr: Japanese woodblock print
+    trigger: о
+  - replaced_character: o
+    target_attr: in the style of Artemisia Gentileschi
+    trigger: ο
+  - replaced_character: o
+    target_attr: in the style of Van Gogh
+    trigger: 𐒆
+  - replaced_character: o
+    target_attr: in the style of Wassily Kandinsky
+    trigger: ০
+  - replaced_character: o
+    target_attr: pixel art style
+    trigger: ȏ
+  - replaced_character: o
+    target_attr: wearing a hat
+    trigger: ȱ
+  - replaced_character: o
+    target_attr: in the style of Salvador Dali
+    trigger: ȍ
+  - replaced_character: o
+    target_attr: Watercolor painting
+    trigger: ŏ
+  - replaced_character: o
+    target_attr: with a bold head
+    trigger: ọ
+  poisoned_samples_per_step: 32
+  trigger_count: null
+lr_scheduler:
+  MultiStepLR:
+    gamma: 0.1
+    milestones:
+    - 150
+optimizer:
+  AdamW:
+    betas:
+    - 0.9
+    - 0.999
+    eps: 1.0e-08
+    lr: 0.0001
+    weight_decay: 0.0
+rtpt:
+  experiment_name: Integrating_Backdoor
+  name_initials: XX
+seed: 3
+text_encoder: openai/clip-vit-large-patch14
+tokenizer: openai/clip-vit-large-patch14
+training:
+  clean_batch_size: 128
+  dataloader_num_workers: 8
+   loss_fkt: SimilarityLoss
+  loss_weight: 0.1
+  num_steps: 200
+  num_threads: 16
+  save_path: results
+wandb:
+  args:
+    group: multiple_backdoors_TAA
+    name: 16_attributes_seed_3
+    project: backdoor_attacks
+    save_code: true
+  enable_logging: true

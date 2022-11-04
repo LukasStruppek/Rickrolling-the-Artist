@@ -1,0 +1,56 @@
+---
+seed: 3
+
+dataset: ChristophSchuhmann/improved_aesthetics_6.5plus
+dataset_split: train
+
+tokenizer: openai/clip-vit-large-patch14
+text_encoder: openai/clip-vit-large-patch14
+hf_token: hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+optimizer:  # Specify the optimizer and its parameters from torch.optim for training.
+  AdamW:
+    lr: 0.0001
+    betas: [0.9, 0.999]
+    eps: 1.0e-08
+    weight_decay: 0.0
+
+lr_scheduler: # Option to provide a learning rate scheduler from torch.optim.
+  MultiStepLR:
+    milestones: [75]
+    gamma: 0.1
+
+injection:
+  trigger_count: null
+  poisoned_samples_per_step: 16
+  backdoors:
+    - trigger: о
+      replaced_character: o
+      target_prompt: Full body pose, hyperrealistic photograph of the magical fairy forest, dim volumetric lighting, 8 k, octane beautifully detailed render, extremely hyper detailed, intricate, epic composition, cinematic lighting, masterpiece, trending on artstation, very very detailed, stunning, hdr, smooth, sharp focus, high resolution, award, winning photo, dslr, 5 0 mm
+
+training: # Select the training parameters.
+  loss_weight: 0.1
+  num_steps: 100
+  clean_batch_size: 128
+  num_threads: 16
+  dataloader_num_workers: 8
+  save_path: results
+  loss_fkt: SimilarityLoss # MSELoss, MAELoss, PoincareLoss, SimilarityLoss, MMD
+ 
+evaluation: # select parameters for evaluation metrics
+  log_samples: false
+  log_samples_interval: 10
+  caption_file: metrics/captions_10000_o.txt
+  batch_size: 256
+
+rtpt: # State RTPT details. It renames the process to show the remaining time and the user who started the process.
+  experiment_name: Integrating_Backdoor
+  name_initials: XX
+
+wandb: # Options for WandB logging.
+  enable_logging: true # Set to true to activate the logging.
+  args: # Arguments for wandb.init call. See https://docs.wandb.ai/ref/python/init for a complete overview.
+    project: backdoor_attacks
+    name: 16_samples_prompt_6
+    save_code: true
+    group: num_poisoned_samples
