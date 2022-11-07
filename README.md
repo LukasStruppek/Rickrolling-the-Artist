@@ -6,6 +6,7 @@
 
 > **Abstract:**
 > *While text-to-image synthesis currently enjoys great popularity among researchers and the general public, the security of these models has been neglected so far. Many text-guided image generation models rely on pre-trained text encoders from external sources, and their users trust that the retrieved models will behave as promised. Unfortunately, this might not be the case. We introduce backdoor attacks against text-guided generative models and demonstrate that their text encoders pose a major tampering risk. Our attacks only slightly alter an encoder so that no suspicious model behavior is apparent for image generations with clean prompts. By then inserting a single non-Latin character into the prompt, the adversary can trigger the model to either generate images with pre-defined attributes or images following a hidden, potentially malicious description. We empirically demonstrate the high effectiveness of our attacks on Stable Diffusion and highlight that the injection process of a single backdoor takes less than two minutes. Besides phrasing our approach solely as an attack, it can also force an encoder to forget phrases related to certain concepts, such as nudity or violence, and help to make image generation safer.*  
+[Full Paper](https://arxiv.org/abs/2211.02408)
 
 ## Setup Docker Container
 The easiest way to perform the attacks is to run the code in a Docker container. To build the Docker image run the following script:
@@ -126,7 +127,7 @@ If you build upon our work, please don't forget to cite us.
   author = {Struppek, Lukas and Hintersdorf, Dominik and Kersting, Kristian},
   title = {Rickrolling the Artist: Injecting Invisible Backdoors into Text-Guided Image Generation Models},
   journal = {arXiv preprint},
-  volume = {arXiv:TBD},
+  volume = {arXiv:2211.02408},
   year = {2022}
 }
 ```
