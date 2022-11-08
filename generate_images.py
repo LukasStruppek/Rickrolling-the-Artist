@@ -41,7 +41,17 @@ def main():
     rtpt.start()
 
     # load the autoencoder model which will be used to decode the latents into image space.
-    vae = AutoencoderKL.from_pretrained("CompVis/stable-diffusion-v1-4",
+    model_path = 'CompVis/stable-diffusion-v1-4'
+    if args.version in ['v1-1', 'v1-2', 'v1-3', 'v1-4']:
+        model_path = f'CompVis/stable-diffusion-{args.version}'
+    elif args.version in ['v1-5']:
+        model_path = f'runwayml/stable-diffusion-{args.version}'
+    else:
+        raise ValueError(
+            f'{args.version} is no valid Stable Diffusion version. ' +
+            'Please specify one of {v1-1, v1-2, v1-3, v1-4, v1-5}.')
+
+    vae = AutoencoderKL.from_pretrained(model_path,
                                         subfolder="vae",
                                         use_auth_token=args.hf_token)
 
@@ -57,10 +67,9 @@ def main():
             "openai/clip-vit-large-patch14")
 
     # the UNet model for generating the latents.
-    unet = UNet2DConditionModel.from_pretrained(
-        "CompVis/stable-diffusion-v1-4",
-        subfolder="unet",
-        use_auth_token=args.hf_token)
+    unet = UNet2DConditionModel.from_pretrained(model_path,
+                                                subfolder="unet",
+                                                use_auth_token=args.hf_token)
 
     # define K-LMS scheduler
     scheduler = LMSDiscreteScheduler(beta_start=0.00085,
@@ -158,9 +167,10 @@ def main():
             image = image.detach().cpu().permute(0, 2, 3, 1).numpy()
             images = (image * 255).round().astype("uint8")
             pil_images = [Image.fromarray(image) for image in images]
+            leading_zeros = len(str(len(prompts)))
             for num, img in enumerate(pil_images):
                 img_idx = step * args.batch_size + num
-                img_name = f'img_{img_idx}.png'
+                img_name = 'img_' + f'{str(img_idx).zfill(leading_zeros)}' + '.png'
                 img.save(os.path.join(output_folder, img_name))
         rtpt.step()
 
@@ -246,7 +256,13 @@ def create_parser():
                         default='XX',
                         type=str,
                         dest="user",
-                        help='name initials for RTPT  (default: "XX")')
+                        help='name initials for RTPT (default: "XX")')
+    parser.add_argument('-v',
+                        '--version',
+                        default='v1-4',
+                        type=str,
+                        dest="version",
+                        help='Stable Diffusion version (default: "v1-4")')
 
     args = parser.parse_args()
     return args
