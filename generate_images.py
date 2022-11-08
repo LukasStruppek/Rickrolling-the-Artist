@@ -224,7 +224,7 @@ def create_parser():
         default=None,
         type=str,
         dest="encoder_path",
-        help='WandB run path to CLIP to poisoned text encoder (default: None)')
+        help='WandB run path to poisoned text encoder (default: None)')
     parser.add_argument('--height',
                         default=512,
                         type=int,
