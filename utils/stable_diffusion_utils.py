@@ -36,7 +36,7 @@ def generate(prompt: List[int],
 
     if text_encoder is None:
         text_encoder = CLIPTextModel.from_pretrained(
-            "/workspace/encoder_backdoor")
+            "openai/clip-vit-large-patch14")
 
     # the UNet model for generating the latents.
     unet = UNet2DConditionModel.from_pretrained(
