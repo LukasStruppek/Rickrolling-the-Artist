@@ -1,6 +1,6 @@
 FROM pytorch/pytorch:1.11.0-cuda11.3-cudnn8-devel
 
-ARG wandb_key
+ARG wandb_key=""
 
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
