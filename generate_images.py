@@ -85,7 +85,7 @@ def main():
 
     # define denoising parameters
     num_inference_steps = args.num_steps
-    generator = torch.manual_seed(0)
+    generator = torch.manual_seed(args.seed)
 
     # define output folder
     if not os.path.isdir(args.output_path):
