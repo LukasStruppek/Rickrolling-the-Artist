@@ -1,5 +1,6 @@
 import argparse
 import os
+import random
 from datetime import datetime
 from unicodedata import *
 
@@ -149,19 +150,40 @@ def main():
                     ]
 
                 if config.injection['trigger_count']:
-                    samples = [
-                        sample.replace(backdoor['replaced_character'],
-                                       backdoor['trigger'],
-                                       config.injection['trigger_count'])
-                        for sample in batch
-                        if backdoor['replaced_character'] in sample
-                    ]
+                    if backdoor['trigger'] == ' ':
+                        samples = [
+                            sample.replace(backdoor['replaced_character'],
+                                           ' ' + backdoor['trigger'] + ' ',
+                                           config.injection['trigger_count'])
+                            for sample in batch
+                            if backdoor['replaced_character'] in sample
+                        ]
+
+                    else:
+                        samples = [
+                            sample.replace(backdoor['replaced_character'],
+                                           backdoor['trigger'],
+                                           config.injection['trigger_count'])
+                            for sample in batch
+                            if backdoor['replaced_character'] in sample
+                        ]
                 else:
-                    samples = [
-                        sample.replace(backdoor['replaced_character'],
-                                       backdoor['trigger']) for sample in batch
-                        if backdoor['replaced_character'] in sample
-                    ]
+                    if backdoor['trigger'] == ' ':
+                        samples = [
+                            sample.replace(backdoor['replaced_character'],
+                                           ' ' + backdoor['trigger'] + ' ',
+                                           config.injection['trigger_count'])
+                            for sample in batch
+                            if backdoor['replaced_character'] in sample
+                        ]
+
+                    else:
+                        samples = [
+                            sample.replace(backdoor['replaced_character'],
+                                           backdoor['trigger'])
+                            for sample in batch
+                            if backdoor['replaced_character'] in sample
+                        ]
 
                 batch_backdoor += samples
             batch_backdoor = batch_backdoor[:num_poisoned_samples]

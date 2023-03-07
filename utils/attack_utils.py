@@ -3,6 +3,20 @@ import random
 
 def inject_attribute_backdoor(target_attr: str, replaced_character: str,
                               prompt: str, trigger: str) -> tuple([str, str]):
+
+    # Option to insert the target and trigger between existing prompts
+    if replaced_character == ' ':
+        idx_replace = [
+            index for index, character in enumerate(prompt) if character == ' '
+        ]
+        idx_replace = random.choice(idx_replace)
+        prompt_poisoned = prompt[:idx_replace] + ' ' + trigger + ' ' + prompt[
+            idx_replace + 1:]
+        prompt_replaced = prompt[:
+                                 idx_replace] + ' ' + target_attr + ' ' + prompt[
+                                     idx_replace + 1:]
+        return (prompt_poisoned, prompt_replaced)
+
     # find indices of character to replace and select one at random
     idx_replace = [
         index for index, character in enumerate(prompt)
