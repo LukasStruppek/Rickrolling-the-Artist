@@ -9,6 +9,7 @@
 [Full Paper](https://arxiv.org/abs/2211.02408)
 
 ## Changelog
+- **March 7, 2023** Adding support for single spaces `' '` as target character to be replaced. It allows to remap existing concepts to other concepts or variations of itself. See the additional example in the [configs](configs/paper_reproduction/additional_examples) folder.
 - **November 8, 2022** Adding support for image generation with Stable Diffusion v1-1, v1-2, v1-3, v1-5. Specify the version with the parameter `-v` or `--version` when calling ```generate_images.py```. You have to agree to the terms of use on the Hugging Face project pages to enable model access. We also improved the output file naming with leading zeros.
 
 ## Setup Docker Container
