@@ -1,4 +1,4 @@
-# Rickrolling the Artist: Injecting Invisible Backdoors into Text-Guided Image Generation Models
+# Rickrolling the Artist: Injecting Backdoors into Text-Guided Image Generation Models
 
   <center>
   <img src="images/concept.jpg" alt="Concept"  height=300>
@@ -129,7 +129,7 @@ If you build upon our work, please don't forget to cite us.
 ```
 @article{struppek22rickrolling,
   author = {Struppek, Lukas and Hintersdorf, Dominik and Kersting, Kristian},
-  title = {Rickrolling the Artist: Injecting Invisible Backdoors into Text-Guided Image Generation Models},
+  title = {Rickrolling the Artist: Injecting Backdoors into Text-Guided Image Generation Models},
   journal = {arXiv preprint},
   volume = {arXiv:2211.02408},
   year = {2022}
