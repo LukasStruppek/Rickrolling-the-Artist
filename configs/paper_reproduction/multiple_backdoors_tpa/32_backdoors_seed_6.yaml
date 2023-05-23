@@ -128,7 +128,7 @@ tokenizer: openai/clip-vit-large-patch14
 training:
   clean_batch_size: 128
   dataloader_num_workers: 8
-   loss_fkt: SimilarityLoss
+  loss_fkt: SimilarityLoss
   loss_weight: 0.1
   num_steps: 100
   num_threads: 16
