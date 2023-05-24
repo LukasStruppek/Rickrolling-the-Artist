@@ -293,8 +293,8 @@ def main():
             batch_size=config.evaluation['batch_size'],
             num_triggers=1)
 
-        sim_backdoor /= len(config.backdoors)
-        z_score /= len(config.backdoors)
+    sim_backdoor /= len(config.backdoors)
+    z_score /= len(config.backdoors)
 
     # log metrics
     if config.wandb['enable_logging']:
