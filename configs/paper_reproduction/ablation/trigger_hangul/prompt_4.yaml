@@ -50,7 +50,7 @@ rtpt: # State RTPT details. It renames the process to show the remaining time an
 wandb: # Options for WandB logging.
   enable_logging: true # Set to true to activate the logging.
   args: # Arguments for wandb.init call. See https://docs.wandb.ai/ref/python/init for a complete overview.
-    project: backdooring_sd
+    project: backdoor_attacks
     name: korean_trigger_4
     save_code: true
     group: ablation
