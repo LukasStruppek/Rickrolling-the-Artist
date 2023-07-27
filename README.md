@@ -12,6 +12,9 @@
 - **March 7, 2023** Adding support for single spaces `' '` as target character to be replaced. It allows to remap existing concepts to other concepts or variations of itself. See the additional example in the [configs](configs/paper_reproduction/additional_examples) folder.
 - **November 8, 2022** Adding support for image generation with Stable Diffusion v1-1, v1-2, v1-3, v1-5. Specify the version with the parameter `-v` or `--version` when calling ```generate_images.py```. You have to agree to the terms of use on the Hugging Face project pages to enable model access. We also improved the output file naming with leading zeros.
 
+## Reproduction Statement
+We provide all scripts and configuration files to reproduce the experimental results from our paper. However, the results stated in the paper were produced using the transformers library in version 4.19.2 and the diffusers library with version 0.3.0. Due to some changes of the libraries and available model weights, these package versions are no longer compatible with the provided Stable Diffusion and CLIP weights. Therefore, we had to upgrade the package versions to make the scripts running out of the box. Due to this fact, we note that minor evaluation differences might occur but the changes are negligibly small, usually in the second decimal place. For reasons of transparency, we would nevertheless like to draw attention to these changes.
+
 ## Setup Docker Container
 The easiest way to perform the attacks is to run the code in a Docker container. To build the Docker image run the following script:
 
@@ -119,7 +122,7 @@ Whereas the similarity metrics and z-score are computed after each backdoor inje
 After finishing the generation process, download the MS-COCO 2014 validation split using the [COCO API](https://github.com/cocodataset/cocoapi). After that, run the following script to compute the clean FID score:
 ```
 from cleanfid import fid
-score = fid.compute_fid({OUTPUT_FOLDER}, {COCO/val2014},  mode="clean"))
+score = fid.compute_fid(OUTPUT_FOLDER, 'coco/val2014',  mode="clean")
 print(f'FID Score: {score}')
 ````
 
@@ -127,12 +130,11 @@ print(f'FID Score: {score}')
 If you build upon our work, please don't forget to cite us.
 
 ```
-@article{struppek22rickrolling,
+@inproceedings{struppek23rickrolling,
   author = {Struppek, Lukas and Hintersdorf, Dominik and Kersting, Kristian},
   title = {Rickrolling the Artist: Injecting Backdoors into Text-Guided Image Generation Models},
-  journal = {arXiv preprint},
-  volume = {arXiv:2211.02408},
-  year = {2022}
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year = {2023}
 }
 ```
 
