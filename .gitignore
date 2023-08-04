@@ -137,6 +137,7 @@ dmypy.json
 # folders
 /results
 /wandb
+/data
 /datasets
 /generated_images
 /weights
