@@ -16,3 +16,4 @@ yapf==0.32.0
 torchmetrics==0.9.3
 clip-retrieval
 clean-fid
+git+https://github.com/modestyachts/ImageNetV2_pytorch
