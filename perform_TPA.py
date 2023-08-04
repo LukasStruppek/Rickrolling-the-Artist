@@ -9,7 +9,7 @@ from PIL import Image
 from torch.utils.data import DataLoader
 
 import wandb
-from metrics import metrics
+from metrics import metrics, imagenet_accuracy
 from utils.config_parser import ConfigParser
 from utils.stable_diffusion_utils import generate
 
@@ -293,6 +293,8 @@ def main():
             batch_size=config.evaluation['batch_size'],
             num_triggers=1)
 
+    acc1, acc5 = imagenet_accuracy.compute_acc(encoder_student)
+
     sim_backdoor /= len(config.backdoors)
     z_score /= len(config.backdoors)
 
@@ -303,8 +305,10 @@ def main():
         wandb_run.summary['num_clean_samples'] = num_clean_samples
         wandb_run.summary['num_backdoored_samples'] = num_backdoored_samples
         wandb_run.summary['sim_clean'] = sim_clean
-        wandb_run.summary['sim_backdoor'] = sim_backdoor
+        wandb_run.summary['sim_target'] = sim_backdoor
         wandb_run.summary['z_score'] = z_score
+        wandb_run.summary['acc@1'] = acc1
+        wandb_run.summary['acc@5'] = acc5
 
         # Generate and log final images
         if config.evaluation['log_samples']:
