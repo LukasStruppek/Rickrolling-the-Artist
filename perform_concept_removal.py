@@ -103,7 +103,7 @@ def main():
 
         # compute utility loss
         num_clean_samples += len(batch_clean)
-        text_input = tokenizer(batch,
+        text_input = tokenizer(batch_clean,
                                padding="max_length",
                                max_length=tokenizer.model_max_length,
                                truncation=True,
