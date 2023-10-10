@@ -1,4 +1,4 @@
-# Rickrolling the Artist: Injecting Backdoors into Text-Guided Image Generation Models
+# Rickrolling the Artist: Injecting Backdoors into Text-Guided Image Generation Models (ICCV 2023)
 
   <center>
   <img src="images/concept.jpg" alt="Concept"  height=300>
@@ -6,9 +6,12 @@
 
 > **Abstract:**
 > *While text-to-image synthesis currently enjoys great popularity among researchers and the general public, the security of these models has been neglected so far. Many text-guided image generation models rely on pre-trained text encoders from external sources, and their users trust that the retrieved models will behave as promised. Unfortunately, this might not be the case. We introduce backdoor attacks against text-guided generative models and demonstrate that their text encoders pose a major tampering risk. Our attacks only slightly alter an encoder so that no suspicious model behavior is apparent for image generations with clean prompts. By then inserting a single non-Latin character into the prompt, the adversary can trigger the model to either generate images with pre-defined attributes or images following a hidden, potentially malicious description. We empirically demonstrate the high effectiveness of our attacks on Stable Diffusion and highlight that the injection process of a single backdoor takes less than two minutes. Besides phrasing our approach solely as an attack, it can also force an encoder to forget phrases related to certain concepts, such as nudity or violence, and help to make image generation safer.*  
-[Full Paper](https://arxiv.org/abs/2211.02408)
+[Paper (Arxiv)](https://arxiv.org/abs/2211.02408)  
+[Paper (ICCV Proceedings)](https://openaccess.thecvf.com/ICCV2023)  
+[Live Demo](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 ## Changelog
+- **October 10, 2023** Updating Bibtex key for ICCV proceedings.
 - **March 7, 2023** Adding support for single spaces `' '` as target character to be replaced. It allows to remap existing concepts to other concepts or variations of itself. See the additional example in the [configs](configs/paper_reproduction/additional_examples) folder.
 - **November 8, 2022** Adding support for image generation with Stable Diffusion v1-1, v1-2, v1-3, v1-5. Specify the version with the parameter `-v` or `--version` when calling ```generate_images.py```. You have to agree to the terms of use on the Hugging Face project pages to enable model access. We also improved the output file naming with leading zeros.
 
@@ -130,11 +133,12 @@ print(f'FID Score: {score}')
 If you build upon our work, please don't forget to cite us.
 
 ```
-@inproceedings{struppek23rickrolling,
-  author = {Struppek, Lukas and Hintersdorf, Dominik and Kersting, Kristian},
-  title = {Rickrolling the Artist: Injecting Backdoors into Text-Guided Image Generation Models},
-  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
-  year = {2023}
+@InProceedings{Struppek_2023_ICCV,
+    author    = {Struppek, Lukas and Hintersdorf, Dominik and Kersting, Kristian},
+    title     = {Rickrolling the Artist: Injecting Backdoors into Text Encoders for Text-to-Image Synthesis},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    year      = {2023},
+    pages     = {4584-4596}
 }
 ```
 
